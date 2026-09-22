@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+    <title>মুহাসাবা ডায়েরি</title>
+    <meta name="description" content="দাওয়াতুস সুন্নাহর মুহাসাবা ডায়েরি — প্রতিদিনের আমলের হিসাব রাখুন।" />
+
+    <!-- Install as an app (PWA) -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0B3D2E" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+    <!-- iPhone / iPad home screen -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="মুহাসাবা" />
+
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+        background-color: #faf9f5;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <meta name="theme-color" content="#0B3D2E">
+<link rel="icon" href="/muhasaba-diary/favicon.ico"/></head>
+
+  <body>
+    <noscript>অ্যাপটি চালাতে ব্রাউজারে JavaScript চালু করুন।</noscript>
+    <div id="root"></div>
+    <script>
+      // Offline support: cache the app shell so it opens without internet (diary data syncs via Firestore).
+      if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('sw.js').catch(function () {});
+        });
+      }
+    </script>
+  <script src="/muhasaba-diary/_expo/static/js/web/entry-f91349129171d3548f765a019e880d41.js" defer></script>
+</body>
+</html>
