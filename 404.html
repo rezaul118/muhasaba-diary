@@ -2,55 +2,56 @@
 <html lang="bn">
   <head>
     <meta charset="utf-8" />
-    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
-    <title>মুহাসাবা ডায়েরি</title>
-    <meta name="description" content="দাওয়াতুস সুন্নাহর মুহাসাবা ডায়েরি — প্রতিদিনের আমলের হিসাব রাখুন।" />
-
-    <!-- Install as an app (PWA) -->
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#0B3D2E" />
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
-    <!-- iPhone / iPad home screen -->
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="মুহাসাবা" />
-
-    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
-    <style id="expo-reset">
-      /* These styles make the body full-height */
-      html,
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>দাওয়াতুস সুন্নাহ — নতুন ঠিকানা</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://dawatussunnah.github.io/" />
+    <style>
+      :root { color-scheme: light; }
       body {
-        height: 100%;
-        background-color: #faf9f5;
+        margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        background: #FAF9F5; color: #16241F; padding: 24px;
+        font-family: "Noto Sans Bengali", "Segoe UI", system-ui, sans-serif; text-align: center;
       }
-      /* These styles disable body scrolling if you are using <ScrollView> */
-      body {
-        overflow: hidden;
-      }
-      /* These styles make the root element full-height */
-      #root {
-        display: flex;
-        height: 100%;
-        flex: 1;
+      .card { max-width: 420px; }
+      h1 { font-size: 22px; margin: 0 0 12px; color: #0B3D2E; }
+      p { font-size: 16px; line-height: 1.7; color: #4A5A53; margin: 0 0 24px; }
+      a {
+        display: inline-block; background: #14805E; color: #fff; text-decoration: none;
+        padding: 14px 28px; border-radius: 14px; font-size: 16px; font-weight: 600;
       }
     </style>
-  <meta name="theme-color" content="#0B3D2E">
-<link rel="icon" href="/muhasaba-diary/favicon.ico"/></head>
-
+  </head>
   <body>
-    <noscript>অ্যাপটি চালাতে ব্রাউজারে JavaScript চালু করুন।</noscript>
-    <div id="root"></div>
+    <div class="card">
+      <h1>অ্যাপটি নতুন ঠিকানায় চলে গেছে</h1>
+      <p>
+        এক মুহূর্তের মধ্যেই নতুন ঠিকানায় নিয়ে যাওয়া হচ্ছে। না হলে নিচের বোতামে চাপুন।
+        আপনার নম্বর ও পিন দিয়ে প্রবেশ করলে আগের সব আমলের হিসাব আগের মতোই পাবেন।
+      </p>
+      <a href="https://dawatussunnah.github.io/">নতুন ঠিকানায় যান</a>
+    </div>
     <script>
-      // Offline support: cache the app shell so it opens without internet (diary data syncs via Firestore).
-      if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('sw.js').catch(function () {});
-        });
-      }
+      // This page replaced an installed web app. Clear its service worker and caches first,
+      // otherwise the old app keeps being served from the phone and never reaches the new site.
+      var NEW_SITE = 'https://dawatussunnah.github.io/';
+      function go() { window.location.replace(NEW_SITE); }
+      var cleanup = [];
+      try {
+        if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+          cleanup.push(navigator.serviceWorker.getRegistrations().then(function (rs) {
+            return Promise.all(rs.map(function (r) { return r.unregister(); }));
+          }));
+        }
+        if (window.caches && caches.keys) {
+          cleanup.push(caches.keys().then(function (ks) {
+            return Promise.all(ks.map(function (k) { return caches.delete(k); }));
+          }));
+        }
+      } catch (e) { /* nothing to clean */ }
+      // Go anyway if the cleanup stalls, so no one is left staring at this page.
+      setTimeout(go, 2500);
+      Promise.all(cleanup).then(go, go);
     </script>
-  <script src="/muhasaba-diary/_expo/static/js/web/entry-63c03482df7dd23847cb241756672dd6.js" defer></script>
-</body>
+  </body>
 </html>

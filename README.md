@@ -1,6 +1,7 @@
-# মুহাসাবা ডায়েরি
+# Retired
 
-Built web app of the Dawatus Sunnah Muhasaba Diary, published with GitHub Pages.
-The source code lives in a separate private repository.
+This site has moved to **https://dawatussunnah.github.io/**
 
-Open the app: https://rezaul118.github.io/muhasaba-diary/
+The pages here only forward visitors to the new address and clear the old
+service worker off their phone. The live site is built from the private repo
+`rezaul118/DawatusSunnah`; see its README.
